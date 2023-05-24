@@ -37,6 +37,11 @@ public class JO03 {
         return -1;
     }
 
+    /**
+     * @author Antg
+     * @description 利用数据结构set
+     * @time 2023/5/24 18:07
+     **/
     public static int m2(int[] nums) {
         Set<Integer> dic = new HashSet<>();
         for (int num : nums) {
