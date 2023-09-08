@@ -182,12 +182,4 @@ public class JO_25 {
 
         return prehead.next;
     }
-
-
-
-    static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) { val = x; }
-    }
 }
