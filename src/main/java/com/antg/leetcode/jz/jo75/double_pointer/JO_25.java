@@ -181,12 +181,6 @@ public class JO_25 {
         pre.next= l1==null?l2:l1;
 
         return prehead.next;
-
-
-
-
-
-        return null;
     }
 
 
