@@ -1,4 +1,4 @@
-package com.antg.toolbox;
+package com.antg.toolbox.enum_scan_util;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.CharsetUtil;
@@ -56,10 +56,16 @@ public class EnumScanUtil {
     public static void extractEnumInfoAndWrite(File file,String targetFile) {
         try {
             String content = FileUtil.readString(file.getAbsoluteFile(), CharsetUtil.CHARSET_UTF_8);
+            // 优化 : 为了减少不必要的解析,对于不含 "public enum" 字符串的文件不进行以下解析
+            if(!content.contains("public enum")){
+                return;
+            }
             String packageName = extractPackageName(content);
             String className = extractClassName(file.getName());
             String serviceName = extractServiceName(packageName);
             Map<String, String> map = extractEnumValue(content);
+
+            // 这个判断也可以防止一些无效的枚举类型写入到文件中
             if(map!=null && map.size()!=0){
                 for (Map.Entry<String, String> ele : map.entrySet()) {
                     StringBuilder sb = new StringBuilder();
