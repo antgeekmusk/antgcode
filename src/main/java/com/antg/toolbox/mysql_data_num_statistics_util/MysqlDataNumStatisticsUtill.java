@@ -29,7 +29,6 @@ public class MysqlDataNumStatisticsUtill {
 
         // 获取数据库连接
 
-
         // 根据配置文件生成sql任务
 
         // 执行任务列表并将结果写入mysql中的一个表
