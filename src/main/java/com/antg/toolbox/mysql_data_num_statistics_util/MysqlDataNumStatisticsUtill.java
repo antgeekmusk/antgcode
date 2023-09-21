@@ -9,7 +9,9 @@ import com.antg.toolbox.mysql_data_num_statistics_util.entity.Config;
 import com.antg.toolbox.mysql_data_num_statistics_util.entity.JdbcConfig;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -86,7 +88,17 @@ public class MysqlDataNumStatisticsUtill {
     * @Description: 获取数据库连接
     */
     public static Connection getConnection(Config config){
-        return null;
+        Connection connection = null;
+        try {
+            JdbcConfig jdbcConfig = config.getJdbcConfig();
+            Class.forName(jdbcConfig.getDriver());
+            connection = DriverManager.getConnection(jdbcConfig.getUrl(), jdbcConfig.getUsername(), jdbcConfig.getPassword());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return connection;
     }
 
     /**
